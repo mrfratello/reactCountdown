@@ -1,14 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Title from "./Countdown-Title";
 import TimeFormat from "../TimeFormat/TimeFormat";
 
 class Countdown extends React.Component {
+    static defaultProps = {
+        hour: 4,
+        minute: 2,
+        second: 0
+    }
+
   constructor(props) {
     super(props);
-    const hour = parseInt(this.props.hour) || 0,
-        minute = parseInt(this.props.minute) || 10,
-        second = parseInt(this.props.second) || 10
-    const time = hour * 3600 + 60 * minute + second;
+    const time = this.props.hour * 3600 + 60 * this.props.minute + this.props.second;
     this.state = {
         time: time
     };
@@ -37,5 +41,12 @@ class Countdown extends React.Component {
     );
   }
 }
+
+Countdown.propTypes = {
+    hour: PropTypes.number,
+    minute: PropTypes.number,
+    second: PropTypes.number
+};
+
 
 export default Countdown;

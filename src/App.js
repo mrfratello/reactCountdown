@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Welcome from './Welcome';
 import Countdown from './Countdown/Countdown';
@@ -9,7 +8,7 @@ class App extends Component {
     return (
       <div className="App">
         <Welcome name="User" />
-        <Countdown title="Обратный отсчет" second="15" />
+        <Countdown title="Обратный отсчет" second={15} />
       </div>
     );
   }

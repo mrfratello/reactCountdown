@@ -4,7 +4,7 @@ import numeral from 'numeral';
 class TimeFormat extends React.Component {
 
   parseTime(time) {
-      time = parseInt(time);
+      time = parseInt(time, 10);
       const second = time % 60;
       time = Math.floor(time / 60);
       const minute = time % 60,
