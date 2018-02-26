@@ -1,29 +1,42 @@
 import React from 'react';
-import numeral from 'numeral';
+import Unit from '../Unit/Unit';
 
 class TimeFormat extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            hour: 0,
+            minute: 0,
+            second: 0
+        }
+    }
 
-  parseTime(time) {
-      time = parseInt(time, 10);
-      const second = time % 60;
-      time = Math.floor(time / 60);
-      const minute = time % 60,
-          hour = Math.floor(time / 60);
-      return {
-          hour: numeral(hour).format('00'),
-          minute: numeral(minute).format('00'),
-          second: numeral(second).format('00')
-      }
-  }
+    _parseTime(time) {
+        time = parseInt(time, 10);
+        const second = time % 60;
+        time = Math.floor(time / 60);
+        const minute = time % 60,
+            hour = Math.floor(time / 60);
+        return {
+            hour,
+            minute,
+            second
+        }
+    }
 
-  render() {
-    let time = this.parseTime(this.props.time);
-    return (
-        <div>
-            {time.hour} : {time.minute} : {time.second}
-        </div>
-    );
-  }
+    componentWillReceiveProps(nextProps) {
+        this.setState(this._parseTime(nextProps.time))
+    }
+
+    render() {
+        return (
+            <div className="TimeFormat">
+                <Unit value={this.state.hour} />:
+                <Unit value={this.state.minute} />:
+                <Unit value={this.state.second} />
+            </div>
+        );
+    }
 }
 
 export default TimeFormat;

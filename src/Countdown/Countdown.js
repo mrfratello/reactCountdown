@@ -10,36 +10,36 @@ class Countdown extends React.Component {
         second: 0
     }
 
-  constructor(props) {
-    super(props);
-    const time = this.props.hour * 3600 + 60 * this.props.minute + this.props.second;
-    this.state = {
-        time: time
-    };
-  }
+    constructor(props) {
+        super(props);
+        const time = this.props.hour * 3600 + 60 * this.props.minute + this.props.second;
+        this.state = {
+            time: time
+        };
+    }
 
-  componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
-  }
+    componentDidMount() {
+        this.timerID = setInterval(
+            () => this.tick(),
+            1000
+        );
+    }
 
-  tick() {
-      let time = this.state.time;
-      this.setState({
-          time: --time
-      });
-  }
+    tick() {
+        let time = this.state.time;
+        this.setState({
+            time: --time
+        });
+    }
 
-  render() {
-    return (
-        <div>
-            <Title value={this.props.title} />
-            <TimeFormat time={this.state.time} />
-        </div>
-    );
-  }
+    render() {
+        return (
+            <div>
+                <Title value={this.props.title} />
+                <TimeFormat time={this.state.time} />
+            </div>
+        );
+    }
 }
 
 Countdown.propTypes = {
